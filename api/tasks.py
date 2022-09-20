@@ -20,7 +20,9 @@ def mul(x, y):
 @shared_task(bind=True)
 def go_to_sleep(self, duration):
     progress_recorder = ProgressRecorder(self)
+    logging.info("The loop is running")
     for i in range(5):
+        logging.info("The loop is {}".format(i))
         time.sleep(duration)
         progress_recorder.set_progress(i + 1, 5, f"on iteration {i}")
     time.sleep(duration)
